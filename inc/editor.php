@@ -13,18 +13,20 @@ function powder_template_parts( array $areas ) {
 		'description' => __( 'The Sidebar template defines a page area that typically contains secondary content, navigation, or social icons.', 'powder' ),
 		'icon'        => 'sidebar',
 	];
-
 	return $areas;
 }
 add_filter( 'default_wp_template_part_areas', 'powder_template_parts' );
 
 function powder_register_block_styles() {
 	$block_styles = [
+		'core/button' => [
+			'fill-light'    => __( 'Fill (Light)', 'powder' ),
+			'outline-light' => __( 'Outline (Light)', 'powder' ),
+		],
 		'core/columns' => [
 			'column-reverse' => __( 'Reverse', 'powder' ),
 		],
 		'core/group' => [
-			'fadein'   => __( 'Fade In', 'powder' ),
 			'fadeinup' => __( 'Fade In Up', 'powder' ),
 		],
 		'core/heading' => [
@@ -35,6 +37,9 @@ function powder_register_block_styles() {
 		],
 		'core/list' => [
 			'no-style' => __( 'No Style', 'powder' ),
+		],
+		'core/navigation' => [
+			'underline-slide' => __( 'Underline', 'powder' ),
 		],
 		'core/paragraph' => [
 			'balanced' => __( 'Balanced', 'powder' ),
@@ -62,33 +67,19 @@ function powder_register_block_styles() {
 add_action( 'init', 'powder_register_block_styles' );
 
 function powder_enqueue_motion_assets() {
+	$post    = get_post();
+	$content = $post->post_content ?? '';
 
-	if ( ! is_singular() ) {
+	if ( ! str_contains( $content, 'is-style-fadeinup' ) ) {
 		return;
 	}
 
-	$content = get_post()->post_content ?? '';
-
-	if (
-		strpos( $content, 'is-style-fadein' ) === false &&
-		strpos( $content, 'is-style-fadeinup' ) === false
-	) {
-		return;
-	}
-
-	$version = wp_get_theme( 'powder' )->get( 'Version' );
-
-	wp_enqueue_style(
-		'powder-motion',
-		get_template_directory_uri() . '/assets/css/motion.css',
-		[ 'powder' ],
-		$version
-	);
+	$version = powder_version();
 
 	wp_enqueue_script(
 		'powder-motion',
 		get_template_directory_uri() . '/assets/js/motion.js',
-		array(),
+		[],
 		$version,
 		true
 	);

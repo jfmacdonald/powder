@@ -244,60 +244,6 @@
 					"fontFamily": "Google Sans, sans-serif",
 					"name": "Google Sans",
 					"slug": "google-sans"
-				},
-				{
-					"fontFace": [
-						{
-							"fontDisplay": "block",
-							"fontFamily": "Google Sans Condensed",
-							"fontStretch": "75%",
-							"fontStyle": "normal",
-							"fontWeight": "100 1000",
-							"src": [
-								"file:./assets/fonts/google-sans/google-sans.woff2"
-							]
-						},
-						{
-							"fontDisplay": "block",
-							"fontFamily": "Google Sans Condensed",
-							"fontStretch": "75%",
-							"fontStyle": "italic",
-							"fontWeight": "100 1000",
-							"src": [
-								"file:./assets/fonts/google-sans/google-sans.woff2"
-							]
-						}
-					],
-					"fontFamily": "Google Sans Condensed, sans-serif",
-					"name": "Google Sans Condensed",
-					"slug": "google-sans-condensed"
-				},
-				{
-					"fontFace": [
-						{
-							"fontDisplay": "block",
-							"fontFamily": "Google Sans Expanded",
-							"fontStretch": "125%",
-							"fontStyle": "normal",
-							"fontWeight": "100 1000",
-							"src": [
-								"file:./assets/fonts/google-sans/google-sans.woff2"
-							]
-						},
-						{
-							"fontDisplay": "block",
-							"fontFamily": "Google Sans Expanded",
-							"fontStretch": "125%",
-							"fontStyle": "italic",
-							"fontWeight": "100 1000",
-							"src": [
-								"file:./assets/fonts/google-sans/google-sans.woff2"
-							]
-						}
-					],
-					"fontFamily": "Google Sans Expanded, sans-serif",
-					"name": "Google Sans Expanded",
-					"slug": "google-sans-expanded"
 				}
 			],
 			"fontSizes": [
@@ -363,18 +309,53 @@
 		"blocks": {
 			"core/button": {
 				"variations": {
+					"fill-light": {
+						"border": {
+							"color": "var(--wp--preset--color--base)"
+						},
+						"color": {
+							"background": "var(--wp--preset--color--base)",
+							"text": "var(--wp--preset--color--contrast)"
+						},
+						":hover": {
+							"color": {
+								"background": "transparent",
+								"text": "var(--wp--preset--color--base)"
+							}
+						}
+					},
 					"outline": {
 						"border": {
-							"color": "currentColor",
-							"style": "solid",
+							"color": "var(--wp--preset--color--contrast)",
 							"width": "1px"
 						},
 						"spacing": {
 							"padding": {
-								"top": "14px",
-								"right": "29px",
-								"bottom": "14px",
-								"left": "29px"
+								"top": "15px",
+								"right": "30px",
+								"bottom": "15px",
+								"left": "30px"
+							}
+						},
+						":hover": {
+							"color": {
+								"background": "var(--wp--preset--color--contrast)",
+								"text": "var(--wp--preset--color--base)"
+							}
+						}
+					},
+					"outline-light": {
+						"border": {
+							"color": "var(--wp--preset--color--base)"
+						},
+						"color": {
+							"background": "transparent",
+							"text": "var(--wp--preset--color--base)"
+						},
+						":hover": {
+							"color": {
+								"background": "var(--wp--preset--color--base)",
+								"text": "var(--wp--preset--color--contrast)"
 							}
 						}
 					}
@@ -581,7 +562,10 @@
 		"elements": {
 			"button": {
 				"border": {
-					"radius": "0"
+					"color": "var(--wp--preset--color--primary)",
+					"radius": "0",
+					"style": "solid",
+					"width": "1px"
 				},
 				"color": {
 					"background": "var(--wp--preset--color--primary)",
@@ -600,6 +584,12 @@
 					"fontSize": "var(--wp--preset--font-size--xx-small)",
 					"fontWeight": "500",
 					"lineHeight": "var(--wp--custom--line-height--medium)"
+				},
+				":hover": {
+					"color": {
+						"background": "transparent",
+						"text": "var(--wp--preset--color--primary)"
+					}
 				},
 				":focus": {
 					"outline": {
